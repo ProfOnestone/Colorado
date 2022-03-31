@@ -5,30 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Colorado"
         mc:Ignorable="d"
-        Title="Colorado" Height="250" Width="446.752" FontSize="5" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Colorado" Height="200" Width="500" FontSize="5" ResizeMode="NoResize" KeyDown="Window_KeyDown">
     <Grid Background="#FF6E6E6E">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Label x:Name="lbl_color" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Content="" Height="47" Width="133" Background="{Binding actualcolor}" Grid.ColumnSpan="2"  />
-        <Label Content="Red" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="48" Width="99" Grid.ColumnSpan="1" Margin="0,1"/>
-        <Label Content="Green" HorizontalAlignment="Right"  Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="48" Width="99" Grid.ColumnSpan="1" Margin="0,1" />
-        <Label Content="Blue" HorizontalAlignment="Right"  Grid.Row="3" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="48" Width="99" Grid.ColumnSpan="1" Margin="0,1,0,0" />
-        <TextBox x:Name="tb_red" HorizontalAlignment="Left" Height="48"  Grid.Row="1" TextWrapping="Wrap" Text="{Binding valuered}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsEnabled="False" Width="78" Grid.Column="1" Margin="0,1" />
-        <TextBox x:Name="tb_green" HorizontalAlignment="Left" Height="48"  Grid.Row="2" TextWrapping="Wrap" Text="{Binding valuegreen}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" IsEnabled="False"  Width="78" Grid.Column="1" Margin="0,1" />
-        <TextBox x:Name="tb_blue" HorizontalAlignment="Left" Height="48"  Grid.Row="3" TextWrapping="Wrap" Text="{Binding valueblue}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsEnabled="False" Width="78" Grid.Column="1" Margin="0,1,0,0" />
-        <ListBox x:Name="TheList" Grid.Column="2" HorizontalAlignment="Left" Height="157" Margin="28,1,0,-6" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Top" Width="204" FontSize="20" SelectionChanged="TheList_SelectionChanged"/>
+        <Label Content="R" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="G" Grid.Column="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="B" Grid.Column="3" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label x:Name="lbl_currentBrush" HorizontalAlignment="Left"  VerticalAlignment="Top" Content="" Height="48" Width="48" Background="{Binding BrushColor}" Grid.Row="1" Grid.Column="4"  />
+        <Label Content="Current" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="48" Width="99" Grid.ColumnSpan="1" Margin="0,1"/>
+        <Label x:Name="lbl_snappedBrush" HorizontalAlignment="Left"  VerticalAlignment="Top" Content="" Height="48" Width="48" Grid.Row="2" Grid.Column="4"  />
+        <Label Content="Snapped" HorizontalAlignment="Right"  Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="48" Width="99" Grid.ColumnSpan="1" Margin="0,1" />
+        
+        <TextBox x:Name="tb_currentRed" HorizontalAlignment="Left" Height="48"  Grid.Row="1" TextWrapping="Wrap" Text="{Binding RedHex,Mode=OneWay,  NotifyOnSourceUpdated=True}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsReadOnly="True" Width="50" Grid.Column="1" Margin="0,1" />
+        <TextBox x:Name="tb_currentGreen" HorizontalAlignment="Left" Height="48"  Grid.Row="1"  TextWrapping="Wrap" Text="{Binding GreenHex,Mode=OneWay}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True"  Width="50" Grid.Column="2" Margin="0,1" />
+        <TextBox x:Name="tb_currentBlue" HorizontalAlignment="Left" Height="48"  Grid.Row="1" TextWrapping="Wrap" Text="{Binding BlueHex,Mode=OneWay}" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsReadOnly="True" Width="50" Grid.Column="3" Margin="0,1" />
+        <TextBox Grid.Row="1" Grid.Column="5" Margin="2" FontSize="20" IsReadOnly="True" VerticalAlignment="Center" Text="{Binding HexColor, Mode=OneWay}" />
 
-
+        <TextBox x:Name="tb_snappedRed" HorizontalAlignment="Left" Height="48"  Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsReadOnly="True" Width="50" Grid.Column="1" Margin="0,1" />
+        <TextBox x:Name="tb_snappedGreen" HorizontalAlignment="Left" Height="48"  Grid.Row="2"  TextWrapping="Wrap" Text="00" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" IsReadOnly="True"  Width="50" Grid.Column="2" Margin="0,1" />
+        <TextBox x:Name="tb_snappedBlue" HorizontalAlignment="Left" Height="48"  Grid.Row="2" TextWrapping="Wrap" Text="00" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  IsReadOnly="True" Width="50" Grid.Column="3" Margin="0,1" />
+        <TextBox x:Name="tb_snappedHex" Grid.Row="2" Grid.Column="5" Margin="2" IsReadOnly="True" FontSize="20" VerticalAlignment="Center" Text="Hit 's' to snap color" />
 
 
     </Grid>
